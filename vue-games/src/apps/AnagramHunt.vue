@@ -59,6 +59,18 @@
         <button @click="screen = 'start'" class="btn btn-secondary w-100 m-1">Back to Start Screen</button>
       </div>
     </div>
+    <!-- Score input -->
+    <div>
+      <div>
+        <label for="user-name">Username</label>
+        <input name="user-name" id="user-name" v-model="userName"/>
+      </div>
+      <div>
+        <label for="score">Score</label>
+        <input name="score" type="number" id="score" v-model="score"/>
+      </div>
+      <button @click="recordScore">Record Score</button>
+     </div>
   </div>
 </template>
 
@@ -127,8 +139,14 @@ export default {
       this.correctGuesses = [];
     },
     async recordScore() {
-      // TODO: when Anagram Hunt finishes, make an Ajax call with axios (this.axios)
-      // to record the score on the backend
+      const data = {
+        "user-name": this.userName,
+        "score": this.score,
+        "game": "ANAGRAM"
+      };
+      const response = (await this.axios.post("/record-score/", data)).data;
+
+      console.log(response);
     }
   },
   watch: {
