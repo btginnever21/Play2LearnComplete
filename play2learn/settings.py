@@ -147,7 +147,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 # AUTHENTICATION SETTINGS
 AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_URL = 'account_login'
-LOGIN_REDIRECT_URL = 'pages:homepage'
+LOGIN_REDIRECT_URL = 'games:homepage'
 
 ## django-allauth settings
 ACCOUNT_AUTHENTICATION_METHOD = 'email' # Default: 'username'

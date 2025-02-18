@@ -23,22 +23,21 @@
         <a href="{% url 'account_login' %}">Log in</a> |
         <a href="{% url 'account_signup' %}">Sign up</a> |
         {% else %}
-          <li class="nav-item dropdown">
+          
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
               role="button" data-bs-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
-              Me
+              <h2>Me</h2>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href= "{% url 'my-account' %}">My Account</a>
-              <a class="dropdown-item" href="#">My Django Jokes</a>
               <div class="dropdown-divider"></div>
               <form method="post" action="{% url 'account_logout' %}">
                 {% csrf_token %}
                 <button class="btn dropdown-item">Log out</button>
               </form>
             </div>
-          </li>
+          
         {% endif %} 
     </nav>
   </header>
@@ -50,9 +49,7 @@
 </body>
 <footer>
   {% if user.is_staff %}
-  <li class="nav-item">
-    <a class="nav-link" href="/admin/">Admin</a>
-  </li>
+    <a href="/admin/">Admin</a>
   {% endif %}
 </footer>
 </html>

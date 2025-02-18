@@ -13,6 +13,8 @@ class HomeView(TemplateView):
 class ContactUsView(TemplateView):
     template_name = "contact-us.html"
 
+    
+
 class MathFactsView(TemplateView):
     template_name = "math-facts.html"
 
