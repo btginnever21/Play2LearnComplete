@@ -1,5 +1,7 @@
 from django.urls import path
 
+from django.conf import settings
+from django.conf.urls.static import static
 
 from games.views import HomeView, ContactUsView, MathFactsView, AnagramHuntView, GameScoresView, record_score
 
@@ -13,4 +15,4 @@ urlpatterns = [
     path('game-scores/', GameScoresView.as_view(), name="game-scores"),
     path('contact-us/', ContactUsView.as_view(), name='contact-us'),
     
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
