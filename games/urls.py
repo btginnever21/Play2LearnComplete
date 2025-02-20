@@ -3,7 +3,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from games.views import HomeView, ContactUsView, MathFactsView, AnagramHuntView, GameScoresView, record_score
+from games.views import HomeView, ContactView, MathFactsView, AnagramHuntView, GameScoresView, record_score
 
 app_name = 'games'
 urlpatterns = [
@@ -13,6 +13,6 @@ urlpatterns = [
     path('anagram-hunt/', AnagramHuntView.as_view(), name='anagram-hunt'),
     path('record-score/', record_score, name="record-score"),
     path('game-scores/', GameScoresView.as_view(), name="game-scores"),
-    path('contact-us/', ContactUsView.as_view(), name='contact-us'),
+    path('contact-us/', ContactView.as_view(), name='contact-us'),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

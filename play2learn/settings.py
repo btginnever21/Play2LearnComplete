@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'debug_toolbar',
 
 
     # local apps
@@ -69,6 +70,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+     'debug_toolbar.middleware.DebugToolbarMiddleware', # The Debug Toolbar
 ]
 
 ROOT_URLCONF = "play2learn.urls"
@@ -170,6 +172,7 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
+
 
 
 # Static files (CSS, JavaScript, Images)

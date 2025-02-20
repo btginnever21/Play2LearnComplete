@@ -1,0 +1,14 @@
+
+{% extends "_base.html" %}
+
+{% block title %}Contact Us{% endblock %}
+{% block header %}Contact Us{% endblock %}
+{% block main %}
+  <p>Feel free to contact us!</p>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Send</button>
+  </form>
+{% endblock %}
+
