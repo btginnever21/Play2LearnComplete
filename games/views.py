@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect
 from django.conf import settings
 from django.contrib import messages
 from django.views.generic import FormView
+from django.views import View
 
 # Create your views here.
 from django.views.generic import TemplateView
@@ -89,3 +90,32 @@ class ContactView(FormView):
         form.send_email()
         messages.success(self.request, 'Your message has been sent successfully!')
         return super().form_valid(form)
+    
+class ReviewForm(forms.Form):
+    name = forms.CharField(label='Your Name', max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    review = forms.CharField(label='Your Review', widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
+    rating = forms.ChoiceField(label='Rating', choices=[(str(i), i) for i in range(1, 6)], widget=forms.Select(attrs={'class': 'form-control'}))
+
+def review_view(request):
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            messages.success(request, "Thank you for your review!")
+            return redirect("review")
+    else:
+        form = ReviewForm()
+    return render(request, "review.html", {"form": form})
+    
+class ReviewView(TemplateView):
+    template_name = "review.html"
+
+    def get(self, request, *args, **kwargs):
+        form = ReviewForm()  # Initialize an empty form
+        return self.render_to_response({'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            messages.success(request, "Thank you for your review!")
+            return redirect('review')
+        return self.render_to_response({'form': form})

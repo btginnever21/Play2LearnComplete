@@ -1,0 +1,12 @@
+{% extends "_base.html" %}
+
+{% block title %}Submit a Review{% endblock %}
+{% block header %}Submit a Review{% endblock %}
+{% block main %}
+  <p>We appreciate your feedback!</p>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{% endblock %}
